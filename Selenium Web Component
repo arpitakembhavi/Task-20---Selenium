@@ -1,0 +1,124 @@
+1)
+package datepickers;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+
+public class DatePickerDemo {
+
+    public static void main(String[] args) {
+        String date = "22"
+        // Set the path to your ChromeDriver executable
+        System.setProperty("webdriver.chrome.driver", "D://driver//chromedriver.exe");
+
+        // Create a new instance of the Chrome driver
+        WebDriver driver = new ChromeDriver();
+
+        // Maximize the browser window
+        driver.manage().window().maximize();
+
+        // Set implicit wait to handle dynamic elements
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        // Navigate to the jQuery UI Datepicker URL
+        driver.get("https://jqueryui.com/datepicker/");
+	
+        // Click on the input field to activate the datepicker
+	driver.findElement(By.xpath("//*[@id="datepicker"]/div/input")).click();
+
+	Thread.sleep(2000);
+	
+	while(true)
+	{
+	     // Write the code to select the next month from the datepicker
+	    String text=driver.findElement(By.xpath("//*[@id="ui-datepicker-div"]/div/div/span[1]")).getText();
+	    if(text.equals(month))
+	    {
+		break;
+	    }
+	    else
+	    {
+		driver.findElement(By.xpath("//*[@id="ui-datepicker-div"]/div/a[2]/span")).click();
+	    }
+	}
+
+
+        // Write the code to select the date "22" from the datepicker
+        driver.findElement(By.xpath("//*[@id="ui-datepicker-div"]//table//tbody//tr[4]//td[1]//a[contains(text(),'22')]"));
+
+        // Print the selected date on the console as output
+        System.out.println("Selected date: " + dateInput.getAttribute("value"));
+
+        // Close the browser window 
+        driver.quit();
+    }
+}
+
+
+2)
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class GuviAutomation {
+
+    public static void main(String[] args) {
+        // Set the path to the chromedriver executable
+        System.setProperty("webdriver.chrome.driver", "D://driver//chromedriver.exe");
+
+        // Launch the browser
+        WebDriver driver = new ChromeDriver();
+
+        // Launch the website
+        driver.get("https://www.guvi.in/");
+
+        // Click on Signup button
+        WebElement signupButton = driver.findElement(By.xpath("//*[@id="accountGroup"]/ul/li[2]/a='Sign Up']"));
+        signupButton.click();
+
+        // Fill in the signup form
+        WebElement nameInput = driver.findElement(By.id("name"));
+        WebElement emailInput = driver.findElement(By.id("email"));
+        WebElement passwordInput = driver.findElement(By.id("password"));
+
+        nameInput.sendKeys("Arpita Kembhavi");
+        emailInput.sendKeys("kembhaviak@mail.com");
+        passwordInput.sendKeys("Arpita@1410");
+
+        // Click on Signup button to submit the form
+        WebElement signupSubmitButton = driver.findElement(By.xpath("//*[@id="signup-btn"]='Sign Up']"));
+        signupSubmitButton.click();
+
+
+        // Click on Login button
+        WebElement loginButton = driver.findElement(By.xpath("//*[@id="accountGroup"]/ul/li[1]/a='Login']"));
+        loginButton.click();
+
+        // Fill in the login form
+        WebElement loginEmailInput = driver.findElement(By.id("loginemail"));
+        WebElement loginPasswordInput = driver.findElement(By.id("loginpassword"));
+
+        loginEmailInput.sendKeys("kembhaviak@gmail.com");
+        loginPasswordInput.sendKeys("Arpita@1410");
+
+        // Click on Login button to submit the form
+        WebElement loginSubmitButton = driver.findElement(By.xpath("//*[@id="login-btn"]='Login']"));
+        loginSubmitButton.click();
+	
+	 // Verify that the Logout button is present, indicating successful login
+        if (logoutButton.isDisplayed()) {
+            System.out.println("Login successful!");
+        } else {
+            System.out.println("Login failed!");
+        }
+
+
+        // Close the browser
+        driver.quit();
+    }
+}
+
